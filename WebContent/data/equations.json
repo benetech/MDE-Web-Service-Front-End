@@ -1,0 +1,84 @@
+{
+    data: [{
+		name: 'x = c',
+		id: 1
+	},{
+		name: 'y = c',
+		id: 2
+	},{
+		 name: 'y = x',
+		 id: 3
+	},{
+		 name: 'y = mx + b',
+		 id: 4
+	},{
+		   name: 'y = ax^2 + b',
+		   id: 5
+	},{
+		   name: 'y-k = (x-h)^2/(4c)',
+		   id: 6
+	},{
+		   name: 'x^2 + y^2 = c',
+		   id: 7
+	},{
+		   name: 'x^2/a^2 + y^2/b^2 = 1',
+		   id: 8
+	},{
+		   name: 'x^2/a^2 - y^2/b^2 = 1',
+		   id: 9
+	},{
+		   name: '(x-h)^2/a^2 + (y-k)^2/b^2 = 1',
+		   id: 10
+	},{
+		   name: '(x-h)^2/a^2 - (y-k)^2/b^2 = c-a',
+		   id: 11
+	},{
+		   name: 'y = b*(((x+a)/abs(x+a) - (x-a)/abs(x-a)) - 1)',
+		   id: 12
+	},{
+		   name: '1/x = (2-y)/(y+3)',
+		   id: 13
+	},{
+		   name: 'y/(1+y) = x^2 - x - 1',
+		   id: 14
+	},{
+		   name: 'y = a * sin(theta)',
+		   id: 15
+	},{
+		   name: 'y = a * cos(theta)',
+		   id: 16
+	},{
+		   name: 'r = a',
+		   id: 17
+    },{		   
+		   name: 'r = sin(a * theta)',
+		   id: 18
+	},{
+		   name: 'r = sin((a/b)*theta)',
+		   id: 19
+	},{
+		   name: 'r = 1-sin(theta)',
+		   id: 20
+	},{
+		   name: 'r = cos(2*theta) - 2*sin(2*theta)',
+		   id: 21
+	},{
+		   name: 'r = a/(1-e*cos(theta-d*PI/180))',
+		   id: 22
+	},{
+		   name: 'r^2 = 2*a^2*cos(2*theta)',
+		   id: 23
+	},{
+		   name: 'x^2 = c',
+		   id: 24
+	},{
+		   name: '(y - mx)^2 = c',
+		   id: 25
+	},{
+		   name: 'x^2 - y^2 = 0',
+		   id: 26
+	},{
+		   name: '(x - ay)^2 - y^2 = 0',
+		   id: 27
+	}]
+}

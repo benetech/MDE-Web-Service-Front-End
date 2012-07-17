@@ -1,0 +1,75 @@
+{
+    "id": "ExtBox1-ext-gen39886",
+    "type": "form",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "border": 5,
+        "height": 109,
+        "hidden": false,
+        "id": "descriptionForm",
+        "layout": "vbox",
+        "bodyBorder": false,
+        "bodyPadding": null,
+        "frameHeader": false,
+        "title": null,
+        "url": "equation-description",
+        "designer|userClassName": "DescriptionForm",
+        "designer|userAlias": "descriptionform",
+        "container|align": "stretch"
+    },
+    "customConfigs": [],
+    "designerId": "0a4e88db-cc3a-42e1-ad39-21000139567a",
+    "$viewOrder": 1,
+    "expanded": true,
+    "cn": [
+        {
+            "id": "ExtBox1-ext-gen9793",
+            "type": "fieldset",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "height": null,
+                "padding": null,
+                "width": 618,
+                "layout": "fit",
+                "title": "Graph Description",
+                "designer|userClassName": "MyFieldSet",
+                "layout|flex": 1
+            },
+            "customConfigs": [],
+            "expanded": true,
+            "cn": [
+                {
+                    "id": "ExtBox1-ext-gen39909",
+                    "type": "textareafield",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "border": null,
+                        "height": 43,
+                        "id": "description",
+                        "margin": null,
+                        "padding": "",
+                        "width": 579,
+                        "name": "description",
+                        "readOnly": true,
+                        "fieldLabel": "",
+                        "designer|userClassName": "MyTextArea"
+                    },
+                    "customConfigs": [],
+                    "expanded": true
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,29 @@
+{
+    "id": "ExtBox1-ext-gen12249",
+    "type": "application",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "models": [
+            "EquationDescModel"
+        ],
+        "stores": [
+            "equationStore",
+            "dataFileStore"
+        ],
+        "views": [
+            "MathTraxView",
+            "DescriptionForm"
+        ],
+        "autoCreateViewport": true,
+        "name": "MyApp"
+    },
+    "customConfigs": [],
+    "designerId": "application",
+    "$viewOrder": 0,
+    "iconCls": "icon-application",
+    "expanded": true
+}
