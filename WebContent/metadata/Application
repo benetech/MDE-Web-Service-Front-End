@@ -16,7 +16,8 @@
         ],
         "views": [
             "MathTraxView",
-            "DescriptionForm"
+            "DescriptionForm",
+            "MyFileUpload"
         ],
         "autoCreateViewport": true,
         "name": "MyApp"

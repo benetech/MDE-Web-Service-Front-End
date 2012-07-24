@@ -17,17 +17,16 @@ Ext.define('MyApp.view.DescriptionForm', {
     extend: 'Ext.form.Panel',
     alias: 'widget.descriptionform',
 
-    border: 5,
+    border: 'false',
     height: 109,
-    hidden: false,
     id: 'descriptionForm',
     layout: {
         align: 'stretch',
         type: 'vbox'
     },
     bodyBorder: false,
-    frameHeader: false,
     url: 'equation-description',
+    'border-style': '',
 
     initComponent: function() {
         var me = this;
@@ -40,6 +39,8 @@ Ext.define('MyApp.view.DescriptionForm', {
             items: [
                 {
                     xtype: 'fieldset',
+                    border: 'false',
+                    frame: true,
                     width: 618,
                     layout: {
                         type: 'fit'
@@ -49,8 +50,11 @@ Ext.define('MyApp.view.DescriptionForm', {
                     items: [
                         {
                             xtype: 'textareafield',
+                            frame: false,
                             height: 43,
+                            hidden: false,
                             id: 'description',
+                            margin: '',
                             padding: '',
                             width: 579,
                             name: 'description',

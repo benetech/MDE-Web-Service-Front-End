@@ -7,24 +7,44 @@
     },
     "codeClass": null,
     "userConfig": {
-        "border": 5,
+        "border": "false",
+        "frame": null,
         "height": 109,
-        "hidden": false,
+        "hidden": null,
         "id": "descriptionForm",
         "layout": "vbox",
         "bodyBorder": false,
         "bodyPadding": null,
-        "frameHeader": false,
+        "frameHeader": null,
         "title": null,
         "url": "equation-description",
         "designer|userClassName": "DescriptionForm",
         "designer|userAlias": "descriptionform",
+        "bodyCssClass": null,
+        "hideBorders": null,
+        "border-style": "",
         "container|align": "stretch"
     },
-    "customConfigs": [],
+    "customConfigs": [
+        {
+            "group": "(Custom Properties)",
+            "name": "bodyCssClass",
+            "type": "string"
+        },
+        {
+            "group": "(Custom Properties)",
+            "name": "hideBorders",
+            "type": "string"
+        },
+        {
+            "group": "(Custom Properties)",
+            "name": "border-style",
+            "type": "string"
+        }
+    ],
     "designerId": "0a4e88db-cc3a-42e1-ad39-21000139567a",
     "$viewOrder": 1,
-    "expanded": true,
+    "expanded": false,
     "cn": [
         {
             "id": "ExtBox1-ext-gen9793",
@@ -35,6 +55,8 @@
             },
             "codeClass": null,
             "userConfig": {
+                "border": "false",
+                "frame": true,
                 "height": null,
                 "padding": null,
                 "width": 618,
@@ -56,9 +78,11 @@
                     "codeClass": null,
                     "userConfig": {
                         "border": null,
+                        "frame": false,
                         "height": 43,
+                        "hidden": false,
                         "id": "description",
-                        "margin": null,
+                        "margin": "",
                         "padding": "",
                         "width": 579,
                         "name": "description",

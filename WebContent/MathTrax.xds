@@ -59,6 +59,14 @@
                 "app/model/EquationDescModel.js"
             ],
             "className": "EquationDescModel"
+        },
+        "b39b5556-48ec-476a-a5d9-8fd16af1c61a": {
+            "paths": [
+                "metadata/view/MyFileUpload",
+                "app/view/override/MyFileUpload.js",
+                "app/view/MyFileUpload.js"
+            ],
+            "className": "MyFileUpload"
         }
     },
     "expandedState": {

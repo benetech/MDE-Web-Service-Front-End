@@ -16,7 +16,7 @@
 Ext.define('MyApp.view.MathTraxView', {
     extend: 'Ext.container.Viewport',
     requires: [
-        'MyApp.view.DescriptionForm'
+        'MyApp.view.MyFileUpload'
     ],
 
     id: 'MathTraxView',
@@ -26,7 +26,6 @@ Ext.define('MyApp.view.MathTraxView', {
     layout: {
         type: 'border'
     },
-    collapsible: 'true',
 
     initComponent: function() {
         var me = this;
@@ -38,19 +37,19 @@ Ext.define('MyApp.view.MathTraxView', {
                     id: 'DescriptionPanel',
                     padding: '',
                     bodyPadding: 5,
-                    activeTab: 0,
+                    activeTab: 1,
                     flex: 1,
                     margins: '0 0 0 0',
                     region: 'center',
                     items: [
                         {
-                            xtype: 'panel',
-                            height: 500,
-                            width: 313,
+                            xtype: 'form',
+                            id: 'equationTab',
                             layout: {
                                 align: 'stretch',
                                 type: 'vbox'
                             },
+                            bodyPadding: 10,
                             title: 'Equation',
                             items: [
                                 {
@@ -78,11 +77,11 @@ Ext.define('MyApp.view.MathTraxView', {
                                             anchor: '100%',
                                             listeners: {
                                                 keydown: {
-                                                    fn: me.onEquationKeydown,
+                                                    fn: me.onEquationComboKeydown,
                                                     scope: me
                                                 },
                                                 select: {
-                                                    fn: me.onEquationSelect,
+                                                    fn: me.onEquationComboSelect,
                                                     scope: me
                                                 }
                                             }
@@ -90,29 +89,62 @@ Ext.define('MyApp.view.MathTraxView', {
                                     ]
                                 },
                                 {
-                                    xtype: 'descriptionform',
-                                    flex: 1
+                                    xtype: 'fieldset',
+                                    height: 51,
+                                    id: 'params',
+                                    width: 252,
+                                    layout: {
+                                        align: 'stretch',
+                                        type: 'hbox'
+                                    },
+                                    title: 'Change Your Equation Settings'
+                                },
+                                {
+                                    xtype: 'fieldset',
+                                    border: 'false',
+                                    frame: true,
+                                    width: 618,
+                                    autoScroll: false,
+                                    layout: {
+                                        align: 'stretch',
+                                        type: 'vbox'
+                                    },
+                                    title: 'Graph Description',
+                                    flex: 1,
+                                    items: [
+                                        {
+                                            xtype: 'textareafield',
+                                            height: 203,
+                                            hidden: false,
+                                            id: 'description',
+                                            margin: '',
+                                            width: 225,
+                                            name: 'description',
+                                            readOnly: true,
+                                            fieldLabel: '',
+                                            flex: 1
+                                        }
+                                    ]
                                 }
                             ]
                         },
                         {
-                            xtype: 'panel',
-                            height: 308,
-                            width: 377,
+                            xtype: 'form',
+                            id: 'dataTab',
+                            layout: {
+                                align: 'stretch',
+                                type: 'vbox'
+                            },
                             title: 'Data',
                             items: [
                                 {
                                     xtype: 'fieldset',
-                                    height: 62,
+                                    height: 54,
                                     padding: '',
                                     title: 'Load Your Data File',
                                     items: [
                                         {
-                                            xtype: 'filefield',
-                                            margin: '',
-                                            padding: 5,
-                                            width: 321,
-                                            fieldLabel: '',
+                                            xtype: 'myfileupload',
                                             anchor: '95%'
                                         }
                                     ]
@@ -120,38 +152,28 @@ Ext.define('MyApp.view.MathTraxView', {
                                 {
                                     xtype: 'fieldset',
                                     height: 259,
+                                    id: 'grid',
+                                    layout: {
+                                        align: 'stretch',
+                                        type: 'vbox'
+                                    },
                                     title: 'View Your Data',
+                                    flex: 1
+                                },
+                                {
+                                    xtype: 'fieldset',
+                                    frame: false,
+                                    layout: {
+                                        align: 'stretch',
+                                        type: 'vbox'
+                                    },
+                                    title: 'Graph Description',
+                                    flex: 1,
                                     items: [
                                         {
-                                            xtype: 'checkboxfield',
-                                            fieldLabel: '',
-                                            boxLabel: 'Box Label',
-                                            checked: true,
-                                            anchor: '100%'
-                                        },
-                                        {
-                                            xtype: 'gridpanel',
-                                            height: 213,
-                                            padding: '',
-                                            autoScroll: true,
-                                            bodyPadding: '',
-                                            title: 'My Grid Panel',
-                                            store: 'dataFileStore',
-                                            viewConfig: {
-
-                                            },
-                                            columns: [
-                                                {
-                                                    xtype: 'gridcolumn',
-                                                    dataIndex: 'x',
-                                                    text: 'X'
-                                                },
-                                                {
-                                                    xtype: 'gridcolumn',
-                                                    dataIndex: 'y',
-                                                    text: 'Y'
-                                                }
-                                            ]
+                                            xtype: 'textareafield',
+                                            id: 'description',
+                                            flex: 1
                                         }
                                     ]
                                 }
@@ -160,12 +182,6 @@ Ext.define('MyApp.view.MathTraxView', {
                         {
                             xtype: 'panel',
                             title: 'Physics'
-                        },
-                        {
-                            xtype: 'panel',
-                            height: 319,
-                            width: 558,
-                            title: 'Information'
                         }
                     ]
                 },
@@ -215,9 +231,9 @@ Ext.define('MyApp.view.MathTraxView', {
         me.callParent(arguments);
     },
 
-    onEquationKeydown: function(textfield, e, options) {
+    onEquationComboKeydown: function(textfield, e, options) {
         if(e.getCharCode() == e.ENTER) {
-            Ext.getCmp('descriptionForm').getForm().load({   
+            Ext.getCmp('equationTab').getForm().load({   
                 method: 'GET',
                 url: 'equation-description',
                 params: {equation:textfield.getRawValue()},
@@ -230,18 +246,27 @@ Ext.define('MyApp.view.MathTraxView', {
         }
     },
 
-    onEquationSelect: function(combo, records, options) {
-        //Ext.ModelMgr.getModel('EquationDescModel').load(1, {
-        //    params: {equation:combo.getValue()},
-        //    success: function(eqDescription) {
-        //        combo.container.down('#descriptionform').loadRecord(eqDescription);
-        //    }
-        //});
-
-        Ext.getCmp('descriptionForm').getForm().load({   
+    onEquationComboSelect: function(combo, records, options) {
+        Ext.getCmp('equationTab').getForm().load({   
             method: 'GET',
             url: 'equation-description',
             params: {equation:combo.getRawValue()},
+            success: function(fp, o){
+                var fieldset = Ext.getCmp('params');
+                fieldset.removeAll();
+                var params = o.result.data.params;
+                for(var p in params){
+                    fieldset.add({
+                        xtype: 'textfield',
+                        fieldLabel: p,
+                        value: params[p],
+                        maxHeight: 20,
+                        maxWidth: 80,
+                        labelWidth: 30,                
+                        flex: 1
+                    });
+                }
+            },
             failure: function() {
                 Ext.Msg.alert('Error', 'Unable to load form data');
             },

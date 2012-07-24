@@ -17,6 +17,7 @@ Ext.define('MyApp.view.Viewport', {
     extend: 'MyApp.view.MathTraxView',
     renderTo: Ext.getBody(),
     requires: [
-        'MyApp.view.MathTraxView'
+        'MyApp.view.MathTraxView',
+        'MyApp.view.DescriptionForm'
     ]
 });

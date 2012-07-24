@@ -9,4 +9,20 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <servlet-name>EquationDescription</servlet-name>
+    <servlet-class>com.benetech.mde.servlet.EquationDescription</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EquationDescription</servlet-name>
+    <url-pattern>/equation-description</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>DataFileUpload</servlet-name>
+  	<servlet-class>com.benetech.mde.servlet.DataFileUpload</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>DataFileUpload</servlet-name>
+  	<url-pattern>/data-file-upload</url-pattern>
+  </servlet-mapping>
 </web-app>
