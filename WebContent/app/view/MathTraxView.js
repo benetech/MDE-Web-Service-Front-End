@@ -16,7 +16,8 @@
 Ext.define('MyApp.view.MathTraxView', {
     extend: 'Ext.container.Viewport',
     requires: [
-        'MyApp.view.MyFileUpload'
+        'MyApp.view.FileUpload',
+        'MyApp.view.GraphPanel'
     ],
 
     id: 'MathTraxView',
@@ -37,7 +38,7 @@ Ext.define('MyApp.view.MathTraxView', {
                     id: 'DescriptionPanel',
                     padding: '',
                     bodyPadding: 5,
-                    activeTab: 1,
+                    activeTab: 0,
                     flex: 1,
                     margins: '0 0 0 0',
                     region: 'center',
@@ -105,10 +106,6 @@ Ext.define('MyApp.view.MathTraxView', {
                                     frame: true,
                                     width: 618,
                                     autoScroll: false,
-                                    layout: {
-                                        align: 'stretch',
-                                        type: 'vbox'
-                                    },
                                     title: 'Graph Description',
                                     flex: 1,
                                     items: [
@@ -122,7 +119,7 @@ Ext.define('MyApp.view.MathTraxView', {
                                             name: 'description',
                                             readOnly: true,
                                             fieldLabel: '',
-                                            flex: 1
+                                            anchor: '0, -25'
                                         }
                                     ]
                                 }
@@ -144,7 +141,7 @@ Ext.define('MyApp.view.MathTraxView', {
                                     title: 'Load Your Data File',
                                     items: [
                                         {
-                                            xtype: 'myfileupload',
+                                            xtype: 'fileupload',
                                             anchor: '95%'
                                         }
                                     ]
@@ -153,27 +150,19 @@ Ext.define('MyApp.view.MathTraxView', {
                                     xtype: 'fieldset',
                                     height: 259,
                                     id: 'grid',
-                                    layout: {
-                                        align: 'stretch',
-                                        type: 'vbox'
-                                    },
                                     title: 'View Your Data',
                                     flex: 1
                                 },
                                 {
                                     xtype: 'fieldset',
                                     frame: false,
-                                    layout: {
-                                        align: 'stretch',
-                                        type: 'vbox'
-                                    },
                                     title: 'Graph Description',
                                     flex: 1,
                                     items: [
                                         {
                                             xtype: 'textareafield',
                                             id: 'description',
-                                            flex: 1
+                                            anchor: '0, -21'
                                         }
                                     ]
                                 }
@@ -181,7 +170,7 @@ Ext.define('MyApp.view.MathTraxView', {
                         },
                         {
                             xtype: 'panel',
-                            title: 'Physics'
+                            title: 'Setting'
                         }
                     ]
                 },
@@ -189,7 +178,7 @@ Ext.define('MyApp.view.MathTraxView', {
                     xtype: 'panel',
                     height: 150,
                     id: 'SettingPanel',
-                    maxHeight: 200,
+                    maxHeight: 280,
                     minHeight: 150,
                     layout: {
                         align: 'stretch',
@@ -202,13 +191,8 @@ Ext.define('MyApp.view.MathTraxView', {
                     split: false
                 },
                 {
-                    xtype: 'panel',
-                    id: 'GraphPanel',
-                    maxWidth: 300,
-                    minWidth: 100,
-                    width: 150,
-                    collapsible: true,
-                    minButtonWidth: 20,
+                    xtype: 'GraphPanel',
+                    padding: '15, 0',
                     flex: 1,
                     margins: '0 0 0 5',
                     region: 'east',
@@ -237,6 +221,24 @@ Ext.define('MyApp.view.MathTraxView', {
                 method: 'GET',
                 url: 'equation-description',
                 params: {equation:textfield.getRawValue()},
+                success: function(fp, o){
+                    var fieldset = Ext.getCmp('params');
+                    fieldset.removeAll();
+                    var params = o.result.data.params;
+                    for(var p in params){
+                        fieldset.add({
+                            xtype: 'textfield',
+                            fieldLabel: p,
+                            value: params[p],
+                            maxHeight: 20,
+                            maxWidth: 80,
+                            labelWidth: 30,                
+                            flex: 1
+                        });
+                    }
+                    Ext.get('graph').dom.innerHTML = 
+                    "<embed id='svg' src='data/graph.svg' width='600' height='800' />";
+                },
                 failure: function() {
                     Ext.Msg.alert('Error', 'Unable to load form data');
                 },
@@ -266,6 +268,8 @@ Ext.define('MyApp.view.MathTraxView', {
                         flex: 1
                     });
                 }
+                Ext.get('graph').dom.innerHTML = 
+                "<embed id='svg' src='data/graph.svg' width='600' height='800' />";
             },
             failure: function() {
                 Ext.Msg.alert('Error', 'Unable to load form data');

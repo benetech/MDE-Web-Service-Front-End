@@ -1,5 +1,7 @@
 package com.benetech.mde.servlet;
 
+import gov.nasa.ial.mde.util.ResourceUtil;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -36,6 +38,8 @@ public class EquationDescription extends HttpServlet {
 	    response.setContentType("text/javascript");
 	    String equation = request.getParameter("equation");
 	    EquationDescriptionParamsBean data = EquationUtil.getEquationDescriptionParamsBean(equation);
+	    String graphFilePath = getServletContext().getRealPath("/") + "data/graph.svg";
+	    ResourceUtil.saveFile(graphFilePath, data.getSvg().getBytes());
 	    EquationDescriptionBean base = new EquationDescriptionBean(data.getEquation(), data.getDescription());
 	    PrintWriter out = response.getWriter();
 	    JSONResponseBean resp = EquationUtil.getJSONResponseBean(true, base);

@@ -26,7 +26,6 @@ import com.benetech.mde.bean.JSONResponseBean;
 import com.benetech.mde.util.EquationUtil;
 
 @WebServlet("/DataFileUpload")
-//@MultipartConfig(location="C:\\Documents and Settings\\jliao\\My Documents", fileSizeThreshold=512*512, maxFileSize=512*512*5, maxRequestSize=512*512*5*5)
 @MultipartConfig(location="/", fileSizeThreshold=512*512, maxFileSize=512*512*5, maxRequestSize=512*512*5*5)
 public class DataFileUpload extends HttpServlet {
 	private static final long serialVersionUID = 2L;

@@ -19,7 +19,7 @@ Ext.Loader.setConfig({
 
 Ext.application({
     requires: [
-        'MyApp.view.override.MyFileUpload'
+        'MyApp.view.override.FileUpload'
     ],
 
     models: [
@@ -32,7 +32,8 @@ Ext.application({
     views: [
         'MathTraxView',
         'DescriptionForm',
-        'MyFileUpload'
+        'FileUpload',
+        'GraphPanel'
     ],
     autoCreateViewport: true,
     name: 'MyApp'

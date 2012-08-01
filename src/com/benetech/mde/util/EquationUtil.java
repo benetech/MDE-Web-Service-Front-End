@@ -6,6 +6,8 @@ import java.text.ParseException;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.swing.JFrame;
+
 import com.benetech.mde.bean.EquationDescriptionBean;
 import com.benetech.mde.bean.EquationDescriptionFileDataBean;
 import com.benetech.mde.bean.EquationDescriptionParamsBean;
@@ -18,6 +20,7 @@ import gov.nasa.ial.mde.solver.Solver;
 import gov.nasa.ial.mde.solver.symbolic.AnalyzedData;
 import gov.nasa.ial.mde.solver.symbolic.AnalyzedEquation;
 import gov.nasa.ial.mde.solver.symbolic.AnalyzedItem;
+import gov.nasa.ial.mde.ui.graph.CartesianGraph;
 
 public class EquationUtil {
 	public static String getMathDescription(String equation) {
@@ -71,9 +74,13 @@ public class EquationUtil {
         Solver solver = new Solver();
         Describer describer = new Describer(solver, currentSettings);
         describer.setOutputFormat(Describer.TEXT_OUTPUT);
+
         solver.add((String)equation);
         solver.solve();
+        
         bean.setEquation(equation);
+        bean.setSvg(getGraphSVG(solver));
+        
         if (solver.anyDescribable())
             bean.setDescription(describer.getDescriptions("standards"));
         else 
@@ -128,5 +135,18 @@ public class EquationUtil {
 	public static JSONResponseBean getJSONResponseBean(boolean success, Object data){
 		JSONResponseBean bean = new JSONResponseBean(success, data);
 		return bean;
+	}
+	
+	public static String getGraphSVG(Solver solver){
+		MdeSettings currentSettings = new MdeSettings("myAppsMdeProperties");
+		CartesianGraph grapher = new CartesianGraph(solver, currentSettings);
+		JFrame window = new JFrame("Tutorial_CartesianGraph");
+        window.getContentPane().add(grapher);
+        window.pack();
+		if (solver.anyGraphable()) {
+			return grapher.getSVG();
+		}else{
+			return null;
+		}
 	}
 }
